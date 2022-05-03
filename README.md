@@ -4,7 +4,7 @@
 This API can register a new user and show the details of a registered user 
 
 ## POST - Add new user 
-Request: /addUser
+```/addUser```
 
 Body example: 
 
