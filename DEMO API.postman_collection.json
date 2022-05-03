@@ -1,0 +1,83 @@
+{
+	"info": {
+		"_postman_id": "ca7bea6b-23c7-4f43-aa89-0f52a46888b5",
+		"name": "DEMO API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Add new User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"utest\",\r\n    \"birthdate\": \"2004-05-03T00:00:00.000Z\",\r\n    \"country\": \"France\",\r\n    \"gender\": \"Male\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/addUser",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"addUser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find user by username",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/findByUsername/utest",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"findByUsername",
+						"utest"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find user by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
