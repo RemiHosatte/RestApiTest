@@ -4,8 +4,13 @@ import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-public class Utils {
+public class DateUtils {
 
+    /**
+     * Check if the date format is correct
+     * @param date value to check
+     * @return state
+     */
     public static boolean isIsoDate(String date) {
         try {
             Instant.from(DateTimeFormatter.ISO_INSTANT.parse(date));
@@ -16,6 +21,11 @@ public class Utils {
         return false;
     }
 
+    /**
+     * Check if the user is adult with the birthdate
+     * @param date birthdate of the user
+     * @return true adult / false none
+     */
     public static boolean isAnAdult(String date) {
         try {
             Instant instant = Instant.from(DateTimeFormatter.ISO_INSTANT.parse(date));

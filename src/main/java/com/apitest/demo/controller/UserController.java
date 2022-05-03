@@ -3,7 +3,7 @@ package com.apitest.demo.controller;
 import com.apitest.demo.TrackExecutionTime;
 import com.apitest.demo.model.User;
 import com.apitest.demo.repository.UserRepositoryCustom;
-import com.apitest.demo.utils.Utils;
+import com.apitest.demo.utils.DateUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,6 +21,12 @@ public class UserController {
     private UserRepositoryCustom userRepository;
 
 
+    /**
+     * Use to find user by id
+     *
+     * @param id of the user
+     * @return the user if he exist / return not found if not (404)
+     */
     @GetMapping("/{id}")
     @TrackExecutionTime
     public ResponseEntity<User> findUserById(@PathVariable(value = "id") long id) {
@@ -32,6 +38,12 @@ public class UserController {
         }
     }
 
+    /**
+     * Use to find user by username
+     *
+     * @param username of the user
+     * @return the user if he exist / return not found if not (404)
+     */
     @GetMapping("findByUsername/{username}")
     @TrackExecutionTime
     public ResponseEntity<User> findUserByUsername(@PathVariable(value = "username") String username) {
@@ -44,6 +56,13 @@ public class UserController {
     }
 
 
+    /**
+     * Use to add new user
+     * Need to be adult and from France
+     * Need to be a new username
+     * @param user new user to add
+     * @return bad request if parameters not correct / return the id number if insert
+     */
     @PostMapping("/addUser")
     @TrackExecutionTime
     public ResponseEntity<String> addUser(@Validated @RequestBody User user) {
@@ -60,10 +79,10 @@ public class UserController {
         if (!user.getCountry().equals("France")) {
             return ResponseEntity.badRequest().body("Only French users are accepted");
         }
-        if (!Utils.isIsoDate(user.getBirthdate())) {
+        if (!DateUtils.isIsoDate(user.getBirthdate())) {
             return ResponseEntity.badRequest().body("Wrong date format: Use yyyy-MM-ddTHH:mm:ss.SSSZ");
         }
-        if (!Utils.isAnAdult(user.getBirthdate())) {
+        if (!DateUtils.isAnAdult(user.getBirthdate())) {
             return ResponseEntity.badRequest().body("Only adult allowed");
         }
         if (userRepository.findByUsername(user.getUsername()).isPresent()) {
