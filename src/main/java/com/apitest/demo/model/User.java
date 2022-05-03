@@ -1,6 +1,9 @@
 package com.apitest.demo.model;
 
+import com.sun.istack.NotNull;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 
@@ -18,5 +21,16 @@ public class User {
     private String phone;
     private String gender;
 
+    public User(String username, String birthdate, String country, String phone, String gender) {
+        this.username = username;
+        this.birthdate = birthdate;
+        this.country = country;
+        this.phone = phone;
+        this.gender = gender;
+    }
 
+
+    public User() {
+
+    }
 }
